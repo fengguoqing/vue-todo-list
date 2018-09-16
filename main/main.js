@@ -2,6 +2,7 @@ const {
   app,
   BrowserWindow,
 } = require('electron');
+const path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,17 +14,17 @@ function createWindow() {
     width: 1080,
     minWidth: 680,
     height: 840,
-    show: false
+    show: false,
   });
 
   win.maximize();
   win.show();
 
   // 然后加载应用的 index.html。
-  win.loadFile('dist/index.html');
+  win.loadFile(path.resolve(app.getAppPath(), 'dist/index.html'));
 
   // 打开开发者工具
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   // 当 window 被关闭，这个事件会被触发。
   win.on('closed', () => {

@@ -4,7 +4,7 @@
   "description": "A Vue.js project",
   "author": "fengguoqing <fengguoqing611@gmail.com>",
   "private": true,
-  "main": "main.js",
+  "main": "main/main.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "electron .",
