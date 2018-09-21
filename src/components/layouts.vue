@@ -1,13 +1,25 @@
 <template>
   <section class="container">
-    <section class="menu"></section>
-    <section class="content-container"></section>
+    <section class="menu">
+      <!-- 菜单容器组件 -->
+      <menus></menus>
+    </section>
+    <!-- 右边的容器 -->
+    <section class="content-container">
+      <todo></todo>
+    </section>
   </section>
 </template>
 
 <script>
-export default {
+import menus from './menus';
+import todo from './todo';
 
+export default {
+  components: {
+    menus,
+    todo,
+  },
 };
 </script>
 
