@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "electron": "^2.0.8",
+    "iview": "^3.1.1-rc.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
