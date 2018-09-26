@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import './plugins/iview';
 import Mock from './mock';
+import store from './vuex/store';
 
 Vue.config.productionTip = false;
 
@@ -14,6 +15,7 @@ Mock.start();
 new Vue({
   el: '#app',
   router,
+  store,
   components: {
     App,
   },

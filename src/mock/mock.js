@@ -31,6 +31,21 @@ export default {
       });
     });
 
+    mock.onGet('/todo/listId').reply((config) => {
+      const {
+        id,
+      } = config.params;
+      const todo = todoData.find(
+        item => id && item.id === id,
+      );
+      todo.count = todo.record.filter(data => data.checked === false).length;
+      return new Promise((resolve, reject) => {
+        resolve([200, {
+          todo, // 返回状态为200，并且返回todo数据
+        }]);
+      });
+    });
+
     mock.onPost('/todo/addTodo').reply((config) => {
       todoData.push({
         id: Mock.Random.guid(),
@@ -38,6 +53,63 @@ export default {
         isDelete: false,
         locked: false,
         record: [],
+      });
+      return new Promise((resolve, reject) => {
+        resolve([200]);
+      });
+    });
+
+    mock.onPost('/todo/addRecord').reply((config) => {
+      const {
+        id,
+        text,
+      } = JSON.parse(config.data);
+      todoData.some((t) => {
+        if (t.id === id) {
+          t.record.push({
+            text,
+            isDelete: false,
+            checked: false,
+          });
+          return true;
+        }
+        return false;
+      });
+      return new Promise((resolve, reject) => {
+        resolve([200]);
+      });
+    });
+
+    // 修改标题
+    mock.onPost('/todo/editTodo').reply((config) => {
+      const {
+        todo,
+      } = JSON.parse(config.data);
+      todoData.some((t, index) => {
+        if (t.id === todo.id) {
+          t.title = todo.title;
+          t.locked = todo.locked;
+          t.isDelete = todo.isDelete;
+          return true;
+        }
+      });
+      return new Promise((resolve, reject) => {
+        resolve([200]);
+      });
+    });
+
+    // 修改记录
+    mock.onPost('/todo/editRecord').reply((config) => {
+      const {
+        id,
+        record,
+        index,
+      } = JSON.parse(config.data);
+      todoData.some((t) => {
+        if (t.id === id) {
+          t.record[index] = record;
+          return true;
+        }
       });
       return new Promise((resolve, reject) => {
         resolve([200]);
