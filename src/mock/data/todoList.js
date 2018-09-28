@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 
-let todoData = [];
+const todoData = [];
 const TODO_COUNT = Mock.Random.natural(1, 10);
 
 for (let i = 1; i <= TODO_COUNT; i++) {

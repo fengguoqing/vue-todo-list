@@ -17,6 +17,10 @@ const env = process.env.NODE_ENV === 'testing' ?
 
 const webpackConfig = merge(baseWebpackConfig, {
   watch: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,

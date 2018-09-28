@@ -38,7 +38,11 @@ export default {
       const todo = todoData.find(
         item => id && item.id === id,
       );
-      todo.count = todo.record.filter(data => data.checked === false).length;
+
+      if (todo) {
+        todo.count = todo.record.filter(data => data.checked === false).length;
+      }
+
       return new Promise((resolve, reject) => {
         resolve([200, {
           todo, // 返回状态为200，并且返回todo数据
